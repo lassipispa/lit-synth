@@ -1,1 +1,0 @@
-{"version":3,"file":"WebSynth.d.ts","sourceRoot":"","sources":["../src/WebSynth.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,UAAU,EAAQ,MAAM,KAAK,CAAC;AAGvC,OAAO,gCAAgC,CAAC;AAIxC,cACM,QAAS,SAAQ,UAAU;IACtB,OAAO,CAAC,GAAG,CAAkB;IAC7B,OAAO,CAAC,MAAM,CAA0B;IAExC,iBAAiB;IAOjB,MAAM;CAOhB;AAED,OAAO,EAAE,QAAQ,EAAE,CAAC"}

@@ -5,6 +5,10 @@ import { oscillatorStore } from "../../stores/OscillatorStore.js";
 
 const { addFrequency, removeFrequency } = oscillatorStore.getState();
 
+/**
+ * @attr freq
+ * @attr key
+ */
 @customElement("synth-key")
 class SynthKey extends LitElement {
   @property() public freq = "440";
@@ -41,13 +45,16 @@ class SynthKey extends LitElement {
   };
 
   override render() {
-    return html`<button
+    return html` <button
       @mousedown="${this.openGate}"
       @mouseup="${this.closeGate}"
+      @mouseout="${this.closeGate}"
     >
       ${this._test}
     </button>`;
   }
 }
+
+customElements.define("synth-key", SynthKey);
 
 export { SynthKey };
