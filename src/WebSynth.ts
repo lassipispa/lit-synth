@@ -23,7 +23,9 @@ class WebSynth extends LitElement {
       <h1>${this._h1}</h1>
       <p>${JSON.stringify(this._freqs, null, 2)}</p>
       <synth-keyboard></synth-keyboard>
-      <control-knob></control-knob>
+      <control-knob
+        @onchange="${(event: InputEvent) => console.log(event.data)}"
+      ></control-knob>
     `;
   }
 }
