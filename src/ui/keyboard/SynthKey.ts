@@ -55,6 +55,4 @@ class SynthKey extends LitElement {
   }
 }
 
-customElements.define("synth-key", SynthKey);
-
 export { SynthKey };

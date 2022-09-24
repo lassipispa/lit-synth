@@ -2,6 +2,7 @@ import { LitElement, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { oscillatorStore } from "./stores/OscillatorStore.js";
 import "./ui/keyboard/SynthKeyboard.js";
+import "./ui/controls/ControlKnob.js";
 
 const { getState, subscribe } = oscillatorStore;
 
@@ -22,6 +23,7 @@ class WebSynth extends LitElement {
       <h1>${this._h1}</h1>
       <p>${JSON.stringify(this._freqs, null, 2)}</p>
       <synth-keyboard></synth-keyboard>
+      <control-knob></control-knob>
     `;
   }
 }
