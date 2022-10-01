@@ -1,4 +1,4 @@
-import { css } from 'lit';
+import { css } from "lit";
 
 export const synthKeyStyles = css`
   button {
@@ -8,5 +8,8 @@ export const synthKeyStyles = css`
     background-color: white;
     border: 2px black solid;
     border-radius: 2px;
+  }
+  button.open {
+    background-color: grey;
   }
 `;

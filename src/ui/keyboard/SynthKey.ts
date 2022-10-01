@@ -1,9 +1,9 @@
 import { html, LitElement } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { synthKeyStyles } from "./SynthKey.styles";
-import { oscillatorStore } from "../../stores/OscillatorStore.js";
+import { frequencyStore } from "../../stores/FrequencyStore.js";
 
-const { addFrequency, removeFrequency } = oscillatorStore.getState();
+const { addFrequency, removeFrequency } = frequencyStore.getState();
 
 /**
  * @attr freq
@@ -15,7 +15,7 @@ class SynthKey extends LitElement {
 
   @property() public key = "a";
 
-  @state() private _test = "Test";
+  @state() private _open = false;
 
   static override styles = synthKeyStyles;
 
@@ -26,12 +26,12 @@ class SynthKey extends LitElement {
   }
 
   openGate = () => {
-    this._test = "Auki";
+    this._open = true;
     addFrequency(parseInt(this.freq, 10));
   };
 
   closeGate = () => {
-    this._test = "Kiinni";
+    this._open = false;
     removeFrequency(parseInt(this.freq, 10));
   };
 
@@ -46,12 +46,11 @@ class SynthKey extends LitElement {
 
   override render() {
     return html` <button
+      class=${this._open ? "open" : "closed"}
       @mousedown="${this.openGate}"
       @mouseup="${this.closeGate}"
       @mouseout="${this.closeGate}"
-    >
-      ${this._test}
-    </button>`;
+    ></button>`;
   }
 }
 

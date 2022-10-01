@@ -18,29 +18,13 @@ class ControlKnob extends LitElement {
   onMouseUp = () => document.removeEventListener("mousemove", this.onMouseMove);
 
   onMouseMove = (event: MouseEvent) => {
-    const { left, top, width, height } = this.getBoundingClientRect();
+    const newValue = this._value - event.movementY;
 
-    const mouseX = event.pageX;
-    const mouseY = event.pageY;
+    if (newValue > 100 || newValue < 0) return;
 
-    const knobCenterX = width / 2 + left;
-    const knobCenterY = height / 2 + top;
+    this._value = newValue;
+    this._angle = (newValue * 270) / 100;
 
-    const deltaX = knobCenterX - mouseX;
-    const deltaY = knobCenterY - mouseY;
-
-    const angleInDegrees = (Math.atan2(deltaX, deltaY) * 180) / Math.PI;
-    const knobAbgle = -(angleInDegrees - 135);
-
-    if (knobAbgle >= 0 && knobAbgle <= 270) {
-      this._angle = knobAbgle;
-    } else if (knobAbgle < 0) {
-      this._angle = 0;
-    } else {
-      this._angle = 270;
-    }
-
-    this._value = Math.floor((100 * this._angle) / 270);
     this.dispatchEvent(
       new InputEvent("onchange", {
         data: this._value.toString(),
@@ -51,6 +35,7 @@ class ControlKnob extends LitElement {
 
   override render() {
     return html`
+      <div>${this._value}</div>
       <div class="knob" @mousedown="${this.onMouseDown}">
         <div
           class="value-indicator"
