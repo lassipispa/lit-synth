@@ -5,42 +5,49 @@ const { subscribe } = frequencyStore;
 class Oscillator {
   private _context: AudioContext;
   private _amp: GainNode;
-  private _oscillators: OscillatorNode[] = [];
+  private _nodes: OscillatorNode[] = [];
+  private _type: OscillatorType = "sine";
 
-  constructor(type: OscillatorType = "sine") {
+  constructor(type: OscillatorType = "sine", gain = 1) {
+    this._type = type;
     this._context = new window.AudioContext();
     this._amp = this._context.createGain();
     this._amp.connect(this._context.destination);
-    this._amp.gain.value = 1;
-    this._subscribeToOscillatorState(type);
+    this._amp.gain.value = gain;
+    this._subscribeToFrequencyStore();
   }
 
-  private createOscillator(freq = 440, type: OscillatorType) {
+  public setVolume(value: number) {
+    this._amp.gain.value = value;
+  }
+
+  public setWaveform(type: OscillatorType) {
+    this._type = type;
+  }
+
+  private _createNode(freq = 440, type: OscillatorType) {
     const oscillator = this._context.createOscillator();
     oscillator.frequency.setValueAtTime(freq, 0);
     oscillator.connect(this._amp);
     oscillator.type = type;
     oscillator.start(0);
-    this._oscillators.push(oscillator);
+    this._nodes.push(oscillator);
   }
 
-  private _subscribeToOscillatorState(type: OscillatorType) {
-    subscribe((oscillatorState) => {
-      this._oscillators.forEach((oscillator) => {
-        if (!oscillatorState.isIncluded(oscillator)) oscillator.stop();
+  private _subscribeToFrequencyStore() {
+    subscribe((frequencyState) => {
+      this._nodes.forEach((oscillator) => {
+        if (!frequencyState.isIncluded(oscillator)) oscillator.stop();
       });
 
-      this._oscillators = this._oscillators.filter((oscillator) =>
-        oscillatorState.isIncluded(oscillator),
+      this._nodes = this._nodes.filter((oscillator) =>
+        frequencyState.isIncluded(oscillator),
       );
 
-      const oscillatorFrequencies = this._oscillators.map(
-        (osc) => osc.frequency.value,
-      );
+      const nodeFrequencies = this._nodes.map((node) => node.frequency.value);
 
-      oscillatorState.frequencies.forEach((freq) => {
-        if (!oscillatorFrequencies.includes(freq))
-          this.createOscillator(freq, type);
+      frequencyState.frequencies.forEach((freq) => {
+        if (!nodeFrequencies.includes(freq)) this._createNode(freq, this._type);
       });
     });
   }

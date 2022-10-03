@@ -10,9 +10,9 @@ class WebSynth extends LitElement {
 
   override connectedCallback(): void {
     super.connectedCallback();
-    new Oscillator("sine");
-    new Oscillator("sawtooth");
-    new Oscillator("square");
+    new Oscillator("sine", 1);
+    new Oscillator("sawtooth", 0.1);
+    new Oscillator("square", 0.5);
   }
 
   override render() {

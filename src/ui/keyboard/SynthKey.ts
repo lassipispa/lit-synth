@@ -25,6 +25,10 @@ class SynthKey extends LitElement {
     document.addEventListener("keyup", this.onKeyUp, false);
   }
 
+  isMatchingKey(event: KeyboardEvent) {
+    return event.key === this.key || event.key === this.key.toUpperCase();
+  }
+
   openGate = () => {
     this._open = true;
     addFrequency(parseInt(this.freq, 10));
@@ -37,11 +41,11 @@ class SynthKey extends LitElement {
 
   onKeyDown = (event: KeyboardEvent) => {
     if (event.repeat) return;
-    if (event.key === this.key) this.openGate();
+    if (this.isMatchingKey(event)) this.openGate();
   };
 
   onKeyUp = (event: KeyboardEvent) => {
-    if (event.key === this.key) this.closeGate();
+    if (this.isMatchingKey(event)) this.closeGate();
   };
 
   override render() {

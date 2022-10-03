@@ -10,8 +10,10 @@ class SynthKeyboard extends LitElement {
   override render() {
     return html`
       <div class="synth-keys-container">
-        <synth-key freq="220" key="a"></synth-key>
-        <synth-key freq="880" key="s"></synth-key>
+        <synth-key freq="523" key="a"></synth-key>
+        <synth-key freq="587" key="s"></synth-key>
+        <synth-key freq="659" key="d"></synth-key>
+        <synth-key freq="698" key="f"></synth-key>
       </div>
     `;
   }
