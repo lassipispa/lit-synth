@@ -5,7 +5,7 @@ interface FrequencyState {
   frequencies: number[];
   addFrequency: (freq: number) => void;
   removeFrequency: (freq: number) => void;
-  isIncluded: (oscillator: OscillatorNode) => boolean;
+  containsOscillatorFrequency: (oscillator: OscillatorNode) => boolean;
 }
 
 const frequencyStore = create<FrequencyState>((set, get) => ({
@@ -20,7 +20,7 @@ const frequencyStore = create<FrequencyState>((set, get) => ({
       frequencies: state.frequencies.filter((f) => f !== freq),
     })),
 
-  isIncluded: (oscillator: OscillatorNode) => {
+  containsOscillatorFrequency: (oscillator: OscillatorNode) => {
     return get().frequencies.includes(oscillator.frequency.value);
   },
 }));

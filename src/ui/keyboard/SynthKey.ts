@@ -1,7 +1,7 @@
 import { html, LitElement } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { synthKeyStyles } from "./SynthKey.styles";
-import { frequencyStore } from "../../stores/FrequencyStore.js";
+import { frequencyStore } from "../../stores/FrequencyStore";
 
 const { addFrequency, removeFrequency } = frequencyStore.getState();
 

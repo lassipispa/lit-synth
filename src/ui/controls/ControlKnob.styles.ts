@@ -11,6 +11,7 @@ export const controlKnobStyles = css`
     border-radius: 50%;
     cursor: pointer;
   }
+
   .value-indicator {
     position: absolute;
     width: 100%;
@@ -20,6 +21,7 @@ export const controlKnobStyles = css`
     background-color: darkgray;
     z-index: 10;
   }
+
   .value-indicator:before {
     content: "";
     position: absolute;

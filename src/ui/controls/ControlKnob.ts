@@ -35,12 +35,14 @@ class ControlKnob extends LitElement {
 
   override render() {
     return html`
-      <div>${this._value}</div>
-      <div class="knob" @mousedown="${this.onMouseDown}">
-        <div
-          class="value-indicator"
-          style="transform: rotate(${this._angle}deg)"
-        ></div>
+      <div class="control-knob">
+        <div>${this._value}</div>
+        <div class="knob" @mousedown="${this.onMouseDown}">
+          <div
+            class="value-indicator"
+            style="transform: rotate(${this._angle}deg)"
+          ></div>
+        </div>
       </div>
     `;
   }
