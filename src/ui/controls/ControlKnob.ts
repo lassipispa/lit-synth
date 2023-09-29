@@ -36,7 +36,6 @@ class ControlKnob extends LitElement {
   override render() {
     return html`
       <div class="control-knob">
-        <div>${this._value}</div>
         <div class="knob" @mousedown="${this.onMouseDown}">
           <div
             class="value-indicator"

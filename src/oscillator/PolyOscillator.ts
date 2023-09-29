@@ -25,7 +25,6 @@ class PolyOscillator extends OscillatorNode {
     oscillator.connect(this._filter);
     oscillator.type = this.type;
     oscillator.start(0);
-    console.log(oscillator);
 
     this._filter.frequency.setValueAtTime(1000, this.context.currentTime);
     this._filter.gain.setValueAtTime(26, this.context.currentTime);

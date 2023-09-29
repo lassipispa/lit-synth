@@ -2,7 +2,7 @@ import { LitElement, html } from "lit";
 import { customElement, state } from "lit/decorators.js";
 import { Synthesizer } from "./Synthesizer";
 import "./ui/keyboard/SynthKeyboard";
-import "./ui/controls/ControlKnob";
+import "./ui/controls/FilterKnob";
 import "./oscillator/PolyOscillator";
 
 @customElement("web-synth")
@@ -18,7 +18,7 @@ class WebSynth extends LitElement {
     return html`
       <h1>${this._h1}</h1>
       <synth-keyboard></synth-keyboard>
-      <control-knob></control-knob>
+      <filter-knob></filter-knob>
     `;
   }
 }
