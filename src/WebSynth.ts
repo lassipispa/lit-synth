@@ -7,20 +7,20 @@ import "./oscillator/PolyOscillator";
 
 @customElement("web-synth")
 class WebSynth extends LitElement {
-  @state() private _h1 = "<lit-synth/>";
+    @state() private _h1 = "<lit-synth/>";
 
-  override connectedCallback(): void {
-    super.connectedCallback();
-    new Synthesizer();
-  }
+    override connectedCallback(): void {
+        super.connectedCallback();
+        new Synthesizer();
+    }
 
-  override render() {
-    return html`
-      <h1>${this._h1}</h1>
-      <synth-keyboard></synth-keyboard>
-      <filter-knob></filter-knob>
-    `;
-  }
+    override render() {
+        return html`
+            <h1>${this._h1}</h1>
+            <synth-keyboard></synth-keyboard>
+            <filter-knob></filter-knob>
+        `;
+    }
 }
 
 export { WebSynth };
