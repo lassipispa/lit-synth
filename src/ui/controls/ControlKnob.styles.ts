@@ -13,11 +13,10 @@ export const controlKnobStyles = css`
 
     .knob {
         position: relative;
-        background-color: grey;
         height: 48px;
         width: 48px;
         margin: auto;
-        border: 2px solid gray;
+        border: 2px solid;
         border-radius: 50%;
         cursor: pointer;
     }
@@ -28,7 +27,6 @@ export const controlKnobStyles = css`
         height: 100%;
         border-radius: 50%;
         transform: rotate(0deg);
-        background-color: darkgray;
         z-index: 10;
     }
 
@@ -39,7 +37,7 @@ export const controlKnobStyles = css`
         left: 8px;
         width: 8px;
         height: 8px;
-        background-color: #ffff;
+        background-color: black;
         border-radius: 50%;
     }
 `;

@@ -61,7 +61,6 @@ class SynthKey extends LitElement {
                     @mouseup="${this.closeGate}"
                     @mouseout="${this.closeGate}"
                 ></button>
-                <div class="keyboard-key-indicator">${this.key}</div>
             </div>
         `;
     }
