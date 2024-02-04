@@ -2,11 +2,15 @@ import { LitElement, html } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import "./ControlKnob";
 import { filterStore } from "../../stores/FilterStore";
+import { filterKnobStyles } from "./FilterKnob.styles";
 
 @customElement("filter-knob")
 class FilterKnob extends LitElement {
+    static override styles = filterKnobStyles;
+
     @property({ type: Number }) public min = 50;
     @property({ type: Number }) public max = 1000;
+
     @state() private _frequency = 0;
 
     constructor() {
@@ -27,9 +31,12 @@ class FilterKnob extends LitElement {
 
     override render() {
         return html`
-            <div>
-                <div>Freq: ${this._frequency}</div>
-                <control-knob @onchange=${this.onChange}></control-knob>
+            <div class="filter-knob">
+                <control-knob
+                    name="Filter"
+                    @onchange=${this.onChange}
+                ></control-knob>
+                <p class="filter-knob-frequency">${this._frequency}</p>
             </div>
         `;
     }
